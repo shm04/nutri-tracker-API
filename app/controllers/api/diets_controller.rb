@@ -3,18 +3,16 @@ module Api
       before_action :set_user
       before_action :set_diet, only: [:show, :update, :destroy]
   
-      # GET /api/users/:user_id/diets
       def index
         @diets = @user.diets
         render json: @diets
       end
   
-      # GET /api/users/:user_id/diets/1
       def show
+        @diet = @user.diets.find(params[:id])
         render json: @diet
       end
   
-      # POST /api/users/:user_id/diets
       def create
         @diet = @user.diets.new(diet_params)
   
@@ -25,7 +23,6 @@ module Api
         end
       end
   
-      # PATCH/PUT /api/users/:user_id/diets/1
       def update
         if @diet.update(diet_params)
           render json: @diet
@@ -34,7 +31,6 @@ module Api
         end
       end
   
-      # DELETE /api/users/:user_id/diets/1
       def destroy
         @diet.destroy
         head :no_content
@@ -51,7 +47,7 @@ module Api
       end
   
       def diet_params
-        params.require(:diet).permit(:name, :calories)
+        params.require(:diet).permit(:name, :calories, :ingredients, :method)
       end
     end
   end

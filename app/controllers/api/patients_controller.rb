@@ -3,18 +3,15 @@ module Api
       before_action :set_user
       before_action :set_patient, only: [:show, :update, :destroy]
   
-      # GET /api/users/:user_id/patients
       def index
         @patients = @user.patients
         render json: @patients
       end
   
-      # GET /api/users/:user_id/patients/1
       def show
         render json: @patient
       end
   
-      # POST /api/users/:user_id/patients
       def create
         @patient = @user.patients.new(patient_params)
   
@@ -25,7 +22,6 @@ module Api
         end
       end
   
-      # PATCH/PUT /api/users/:user_id/patients/1
       def update
         if @patient.update(patient_params)
           render json: @patient
@@ -34,7 +30,6 @@ module Api
         end
       end
   
-      # DELETE /api/users/:user_id/patients/1
       def destroy
         @patient.destroy
         head :no_content

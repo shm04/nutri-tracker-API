@@ -65,3 +65,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "rspec-rails"
+gem 'rswag', "~> 2.11.0"
+gem 'rack-cors', :require => 'rack/cors', :group => :development
